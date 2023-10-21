@@ -1,3 +1,4 @@
+modules
 module.exports = function({ api, models }) {
 
 	const Users = require("./controllers/users")({ models, api }),
@@ -10,7 +11,7 @@ module.exports = function({ api, models }) {
   var day = moment.tz("Asia/Kolkata").day();
   
   
-  const checkttDataPath = __dirname + '/../modules/commands/checktt/';
+  const checkttDataPath = __dirname + '/../Priyansh/commands/checktt/';
   setInterval(async() => {
     const day_now = moment.tz("Asia/Kolkata").day();
     if (day != day_now) {
@@ -148,7 +149,7 @@ module.exports = function({ api, models }) {
 
 
 	//DEFINE DATLICH PATH
-	const datlichPath = __dirname + '/../modules/commands/cache/datlich.json';
+	const datlichPath = __dirname + '/../Priyansh/commands/cache/datlich.json';
 
 	//FUNCTION HOẠT ĐỘNG NHƯ CÁI TÊN CỦA NÓ, CRE: DUNGUWU
 	const monthToMSObj = {
@@ -246,13 +247,13 @@ module.exports = function({ api, models }) {
 				out.attachment = [];
 				for (a of el.ATTACHMENT) {
 					let getAttachment = (await axios.get(encodeURI(a.url), { responseType: "arraybuffer"})).data;
-					fs.writeFileSync(__dirname + `/../modules/commands/cache/${a.fileName}`, Buffer.from(getAttachment, 'utf-8'));
-					out.attachment.push(fs.createReadStream(__dirname + `/../modules/commands/cache/${a.fileName}`));
+					fs.writeFileSync(__dirname + `/../Priyansh/commands/cache/${a.fileName}`, Buffer.from(getAttachment, 'utf-8'));
+					out.attachment.push(fs.createReadStream(__dirname + `/../Priyansh/commands/cache/${a.fileName}`));
 				}
 			}
 			console.log(out);
 			if ("BOX" in el) await api.setTitle(el["BOX"], el["TID"]);
-			api.sendMessage(out, el["TID"], () => ("ATTACHMENT" in el) ? el.ATTACHMENT.forEach(a => fs.unlinkSync(__dirname + `/../modules/commands/cache/${a.fileName}`)) : "");
+			api.sendMessage(out, el["TID"], () => ("ATTACHMENT" in el) ? el.ATTACHMENT.forEach(a => fs.unlinkSync(__dirname + `/../Priyansh/commands/cache/${a.fileName}`)) : "");
 		}
 
 	}
@@ -265,7 +266,7 @@ module.exports = function({ api, models }) {
 	
 	return (event) => {
     if (event.type == "change_thread_image") api.sendMessage(`» [ GROUP UPDATES ] ${event.snippet}`, event.threadID);
-    let data = JSON.parse(fs.readFileSync(__dirname + "/../modules/commands/Priyanshu/approvedThreads.json"));
+    let data = JSON.parse(fs.readFileSync(__dirname + "/../Priyansh/commands/Priyanshu/approvedThreads.json"));
     let adminBot = global.config.ADMINBOT
     if (!data.includes(event.threadID) && !adminBot.includes(event.senderID)) {
       //getPrefix
