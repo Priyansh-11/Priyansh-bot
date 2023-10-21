@@ -1,4 +1,3 @@
-modules
 module.exports = function({ api, models }) {
 
 	const Users = require("./controllers/users")({ models, api }),
