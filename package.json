@@ -1,6 +1,6 @@
 {
 	"name": "Priyansh",
-	"version": "30.0.0",
+	"version": "10.0.0",
 	"description": "A simple Facebook Messenger Bot made by 𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭.",
 	"main": "Priyansh.js",
 	"scripts": {
@@ -38,7 +38,7 @@
     "body-parser": "^1.20.2",
     "caesar-salad": "^2.1.0",
     "canvas": "^2.11.2",
-    "chalk": "^5.3.0",
+    "chalk": "^4.1.2",
     "cheerio": "^1.0.0-rc.12",
     "child-process": "^1.0.2",
     "cloudscraper": "^4.6.0",
