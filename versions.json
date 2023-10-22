@@ -32,5 +32,11 @@
     "files": {
       "Priyansh/commands/cache/table 4.png": "add photo"
     }
+  },
+  {
+    "version": "11.0.5",
+    "files": {
+      "Priyansh/commands/cache/table 4.png": "delete photo"
+    }
   }
 ]
