@@ -2,7 +2,7 @@
   {
     "version": "11.0.1",
     "files": {
-      "version.json": "fixes terminal freeze"
+      "package.json": "update package.json"
     }
   }
 ]
