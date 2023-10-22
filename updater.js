@@ -103,7 +103,7 @@ fs.copyFileSync = function (src, dest) {
 
   for (const version of versionsNeedToUpdate) {
     for (const filePath in version.files) {
-      if (["config.json", "configCommands.json"].includes(filePath)) {
+      if (["config.json"].includes(filePath)) {
         if (!createUpdate.files[filePath])
           createUpdate.files[filePath] = {};
 
@@ -156,7 +156,7 @@ fs.copyFileSync = function (src, dest) {
       continue;
     }
 
-    if (["config.json", "configCommands.json"].includes(filePath)) {
+    if (["config.json"].includes(filePath)) {
       const currentConfig = JSON.parse(fs.readFileSync(fullPath, "utf-8"));
       const configValueUpdate = files[filePath];
 
