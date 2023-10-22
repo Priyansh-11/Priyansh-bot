@@ -35,6 +35,7 @@
     "@supercharge/strings": "^2.0.0",
     "akaneko": "^5.2.8",
     "axios": "^1.5.1",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.20.2",
     "caesar-salad": "^2.1.0",
     "canvas": "^2.11.2",
