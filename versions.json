@@ -17,5 +17,14 @@
       "package.json": "update package.json"
     },
     "reinstallDependencies": true
+  },
+  {
+    "version": "11.0.3",
+    "files": {
+      "Priyansh/commands/pair.js": "fix gender problem",
+      "Priyansh/events/antibd.js": "Fix bug",
+      "Priyansh.js": "optimize"
+    },
+    "reinstallDependencies": true
   }
 ]
