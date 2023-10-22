@@ -5,6 +5,7 @@
 
 # Priyansh.js 
 
+priyansh.newVersionDetected=𝐘𝐨𝐮 𝐚𝐫𝐞 𝐮𝐬𝐢𝐧𝐠 𝐯𝐞𝐫𝐬𝐢𝐨𝐧 %1, 𝐭𝐡𝐞 𝐥𝐚𝐭𝐞𝐬𝐭 𝐯𝐞𝐫𝐬𝐢𝐨𝐧 𝐢𝐬 %2. 𝐏𝐥𝐞𝐚𝐬𝐞 𝐮𝐩𝐝𝐚𝐭𝐞 𝐭𝐨 𝐭𝐡𝐞 𝐥𝐚𝐭𝐞𝐬𝐭 𝐯𝐞𝐫𝐬𝐢𝐨𝐧 𝐨𝐟 𝐟𝐨𝐫 𝐛𝐞𝐭𝐭𝐞𝐫 𝐛𝐨𝐭 𝐩𝐞𝐫𝐟𝐨𝐫𝐦𝐚𝐧𝐜𝐞. 𝐅𝐨𝐫 𝐮𝐩𝐝𝐚𝐭𝐞 𝐭𝐲𝐩𝐞 𝐢𝐧 𝐜𝐨𝐧𝐬𝐨𝐥𝐞/𝐜𝐦𝐝: 𝐧𝐨𝐝𝐞 𝐮𝐩𝐝𝐚𝐭𝐞
 priyansh.errorFormat=Malformed module!
 priyansh.nameExist=Module's name is similar to another module!
 priyansh.notFoundLanguage=Module %1 don't support your language
@@ -101,3 +102,16 @@ handleSchedule.exectuteError=Having some error when schedule at module %1, error
 # utils/index.js
 
 utils.throwError=ℹ️ [!] Ye Command Kaam Nahi Kar Raha Koi Dosra Try Karo, %1help %2 Use For More usage 😉 ℹ️
+
+# updater.js
+
+updater.latestVersion=You are using the latest version
+updater.cantFindVersion=You are using an undefined version (%1), please check your package.json file again
+updater.newVersions=There are %1 new versions to update, starting to update...
+updater.updateSuccess=Update successfully%1
+updater.configChanged=The %1 has been changed, please check your config.json file again
+updater.installingPackages=Installing dependencies for bot...
+updater.installSuccess=Installed dependencies successfully, restart the bot to use the new version
+updater.backupSuccess=Successfully backed up changed files, see in the %1 folder
+updater.restartToApply=. Restart the bot to apply the new version
+updater.skipFile=There is a new version of the %1 file, but you have skipped this file during the update process with the comment %2 in this file
