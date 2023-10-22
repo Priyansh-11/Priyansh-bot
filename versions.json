@@ -10,5 +10,12 @@
     "files": {
       "package.json": "update package.json"
     }
+  },
+  {
+    "version": "11.0.2",
+    "files": {
+      "package.json": "update package.json"
+    },
+    "reinstallDependencies": true
   }
 ]
