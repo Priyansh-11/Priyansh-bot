@@ -1,5 +1,11 @@
 [
   {
+    "version": "10.0.0",
+    "files": {
+      "package.json": "update package.json"
+    }
+  },
+  {
     "version": "11.0.1",
     "files": {
       "package.json": "update package.json"
