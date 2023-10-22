@@ -35,7 +35,7 @@
   },
   {
     "version": "11.0.5",
-    "files": {
+    "deleteFiles": {
       "Priyansh/commands/cache/table 4.png": "delete photo"
     }
   }
