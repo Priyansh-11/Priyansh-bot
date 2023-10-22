@@ -1,3 +1,6 @@
+process.on('unhandledRejection', error => console.log(error));
+process.on('uncaughtException', error => console.log(error));
+
 const chalk = require('chalk');
 var cron = require("node-cron");
 const { exec } = require("child_process");
@@ -496,6 +499,10 @@ cron.schedule('0 59 23 * * *', () => {
 //========= Connecting to Database =========//
 //////////////////////////////////////////////
 (async() => {
+    const { data: { version } } = await axios.get("https://raw.githubusercontent.com/priyanshu192/check2/main/package.json");
+  const currentVersion = require("./package.json").version;
+  if (compareVersion(version, currentVersion) === 1)
+      logger(global.getText('priyansh', 'newVersionDetected' , currentVersion, version), '[ UPDATE ]'); 
     try {
         await sequelize.authenticate();
         const authentication = {};
@@ -507,7 +514,19 @@ cron.schedule('0 59 23 * * *', () => {
         botData.models = models
         onBot(botData);
     } catch (error) { logger(global.getText('priyansh', 'successConnectDatabase', JSON.stringify(error)), '[ DATABASE ]'); }
-console.log(chalk.bold.hex("#eff1f0").bold("================== SUCCESFULLY ====================="));
-   
+console.log(chalk.bold.hex("#eff1f0").bold("================== SUCCESFULLY ====================="));  
 })();
-process.on('unhandledRejection', (err, p) => {});
+
+function compareVersion(version1, version2) {
+  const v1 = version1.split(".");
+  const v2 = version2.split(".");
+  for (let i = 0; i < 3; i++) {
+    if (parseInt(v1[i]) > parseInt(v2[i]))
+      return 1; // version1 > version2
+    if (parseInt(v1[i]) < parseInt(v2[i]))
+      return -1; // version1 < version2
+  }
+  return 0; // version1 = version2
+}
+
+// process.on('unhandledRejection', (err, p) => {});
