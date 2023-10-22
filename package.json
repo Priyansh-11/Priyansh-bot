@@ -70,6 +70,7 @@
     "npmlog": "^7.0.1",
     "openai": "^3.2.1",
     "opusscript": "^0.1.1",
+    "pastebin-api": "^4.0.1",
     "path": "^0.12.7",
     "pidusage": "^3.0.2",
     "ping-monitor": "^0.8.1",
