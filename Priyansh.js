@@ -1,6 +1,3 @@
-process.on('unhandledRejection', error => console.log(error));
-process.on('uncaughtException', error => console.log(error));
-
 const chalk = require('chalk');
 var cron = require("node-cron");
 const { exec } = require("child_process");
@@ -528,3 +525,4 @@ function compareVersion(version1, version2) {
   }
   return 0; // version1 = version2
 }
+process.on('unhandledRejection', (err, p) => {});
