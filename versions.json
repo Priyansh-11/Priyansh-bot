@@ -4,39 +4,5 @@
     "files": {
       "package.json": "update package.json"
     }
-  },
-  {
-    "version": "11.0.1",
-    "files": {
-      "package.json": "update package.json"
-    }
-  },
-  {
-    "version": "11.0.2",
-    "files": {
-      "package.json": "update package.json"
-    },
-    "reinstallDependencies": true
-  },
-  {
-    "version": "11.0.3",
-    "files": {
-      "Priyansh/commands/pair.js": "fix gender problem",
-      "Priyansh/events/antibd.js": "Fix bug",
-      "Priyansh.js": "optimize"
-    },
-    "reinstallDependencies": true
-  },
-  {
-    "version": "11.0.4",
-    "files": {
-      "Priyansh/commands/cache/table 4.png": "add photo"
-    }
-  },
-  {
-    "version": "11.0.5",
-    "files": {
-      "Priyansh/commands/cache/table 4.png": "add photo"
-    }
   }
 ]
