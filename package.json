@@ -72,7 +72,6 @@
 		"nhentai-api": "^3.4.3",
 		"node-cron": "^3.0.2",
     "node-fetch": "^2.6.9",
-		"node-opus": "^0.3.3",
 		"node-schedule-tz": "^1.2.1-4",
 		"npm": "^9.4.2",
     "npmlog": "^7.0.1",
