@@ -4,5 +4,12 @@
     "files": {
       "package.json": "update package.json"
     }
+  },
+  {
+    "version": "10.1.0",
+    "files": {
+      "Priyansh/commands/burger.js": "new command",
+      "Priyansh/commands/burger.jpeg": "add photo"
+    }
   }
 ]
