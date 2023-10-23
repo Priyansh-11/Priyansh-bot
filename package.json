@@ -1,6 +1,6 @@
 {
 	"name": "Priyansh",
-	"version": "11.0.5",
+	"version": "10.0.0",
 	"description": "A simple Facebook Messenger Bot made by 𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭.",
 	"main": "Priyansh.js",
 	"scripts": {
@@ -10,7 +10,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/priyanshu192/fb-bot/issues"
+		"url": "https://github.com/Priyansh-11/Priyansh-bot/issues"
 	},
 	"keywords": [
 		"bot",
@@ -25,9 +25,9 @@
 	"author": "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭",
 	"license": "GPL-3.0",
 	"bugs": {
-		"url": "https://github.com/priyanshu192/fb-bot/issues"
+		"url": "https://github.com/Priyansh-11/Priyansh-bot/issues"
 	},
-	"homepage": "https://github.com/priyanshu192/fb-bot/issues",
+	"homepage": "https://github.com/Priyansh-11/Priyansh-bot/issues",
 	"dependencies": {
     "@distube/ytdl-core": "^4.13.2",
     "@miraipr0ject/assets": "^1.0.9",
