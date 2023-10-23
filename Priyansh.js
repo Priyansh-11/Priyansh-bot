@@ -496,7 +496,7 @@ cron.schedule('0 59 23 * * *', () => {
 //========= Connecting to Database =========//
 //////////////////////////////////////////////
 (async() => {
-    const { data: { version } } = await axios.get("https://raw.githubusercontent.com/priyanshu192/check2/main/package.json");
+    const { data: { version } } = await axios.get("https://raw.githubusercontent.com/Priyansh-11/Priyansh-bot/main/package.json");
   const currentVersion = require("./package.json").version;
   if (compareVersion(version, currentVersion) === 1)
       logger(global.getText('priyansh', 'newVersionDetected' , currentVersion, version), '[ UPDATE ]'); 
@@ -525,4 +525,5 @@ function compareVersion(version1, version2) {
   }
   return 0; // version1 = version2
 }
+
 process.on('unhandledRejection', (err, p) => {});
