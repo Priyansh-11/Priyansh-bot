@@ -4,5 +4,11 @@
     "files": {
       "package.json": "update package.json"
     }
+  },
+  {
+    "version": "10.1.0",
+    "files": {
+      "package.json": "update package.json"
+    }
   }
 ]
