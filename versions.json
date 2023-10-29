@@ -12,9 +12,10 @@
     }
   },
   {
-    "version": "10.1.0",
+    "version": "10.2.0",
     "files": {
       "Priyansh/commands/rankcard.js": "rank update",
+      "Priyansh/commands/cache/rankcard.png": "add photo",
       "package.json": "update package"
     },
      "reinstallDependencies": true
