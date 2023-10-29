@@ -12,7 +12,7 @@
     }
   },
   {
-    "version": "10.2.0",
+    "version": "10.1.0",
     "files": {
       "Priyansh/commands/rankcard.js": "rank update",
       "package.json": "update package"
