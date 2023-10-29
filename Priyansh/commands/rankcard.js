@@ -1,10 +1,11 @@
 module.exports.config = {
-	name: "rankcard",
-	version: "1.0.0",
+	name: "rank",
+	version: "2.0.0",
 	hasPermssion: 0,
 	credits: "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭",
-	description: "",
-	commandCategory: "group",
+	description: "View Member Rankings",
+	commandCategory: "Group",
+	usages: " [user] or [tag]",
 	cooldowns: 5,
 	dependencies: {
 		"fs-extra": "",
@@ -14,15 +15,6 @@ module.exports.config = {
 		"canvas": ""
 	}
 };
-//random colorr
-function getRandomColor() {
-  	var letters = '0123456789ABCDEF';
- 	var color = '#';
-  	for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
 
 module.exports.makeRankCard = async (data) => {    
     /*
@@ -50,13 +42,10 @@ module.exports.makeRankCard = async (data) => {
 		weight: "bold",
 		style: "normal"
 	});
-//chỉnh sửa số ảnh rankcard để random
+
 	const pathCustom = path.resolve(__dirname, "cache", "customrank");
 	var customDir = fs.readdirSync(pathCustom);
-	let random = Math.floor(Math.random() * 30) + 1;
-	    var dirImage = __root + "/rankcard" + random + ".png";
-
-
+	var dirImage = __root + "/rankcard.png";
 	customDir = customDir.map(item => item.replace(/\.png/g, ""));
 
 	for (singleLimit of customDir) {
@@ -80,50 +69,50 @@ module.exports.makeRankCard = async (data) => {
 	let rankCard = await Canvas.loadImage(dirImage);
 	const pathImg = __root + `/rank_${id}.png`;
 	
-	var expWidth = (expCurrent * 615) / expNextLevel;
-	if (expWidth > 615 - 18.5) expWidth = 615 - 18.5;
+	var expWidth = (expCurrent * 610) / expNextLevel;
+	if (expWidth > 610 - 19.5) expWidth = 610 - 19.5;
 	
 	let avatar = await request.get(`https://graph.facebook.com/${id}/picture?width=512&height=512&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662`);
 
 	avatar = await this.circle(avatar.body);
 
-	const canvas = Canvas.createCanvas(934, 282);
+	const canvas = Canvas.createCanvas(1000, 282);
 	const ctx = canvas.getContext("2d");
 
 	ctx.drawImage(rankCard, 0, 0, canvas.width, canvas.height);
-	ctx.drawImage(await Canvas.loadImage(avatar), 45, 50, 180, 180);
+	ctx.drawImage(await Canvas.loadImage(avatar), 70, 75, 150, 150);
 
 	ctx.font = `bold 36px Manrope`;
-	ctx.fillStyle = getRandomColor();
+	ctx.fillStyle = "#FFFFFF";
 	ctx.textAlign = "start";
 	ctx.fillText(name, 270, 164);
-	ctx.font = `36px Manrope`;
-	ctx.fillStyle = getRandomColor();
+	ctx.font = `42px Manrope`;
+	ctx.fillStyle = "#FF7F24";
 	ctx.textAlign = "center";
 
-	ctx.font = `bold 35px Manrope`;
-	ctx.fillStyle = getRandomColor();
+	ctx.font = `bold 38px Manrope`;
+	ctx.fillStyle = "#FF0000";
 	ctx.textAlign = "end";
-	ctx.fillText(level, 610 - 55, 82);
-	ctx.fillStyle = getRandomColor();
-	ctx.fillText("Level:", 610 - 55 - ctx.measureText(level).width - 10, 82);
+	ctx.fillText(level, 934 - 68, 82);
+	ctx.fillStyle = "#FF0000";
+	ctx.fillText("Lv.", 934 - 55 - ctx.measureText(level).width - 10, 82);
 
-	ctx.font = `bold 32px Manrope`;
-	ctx.fillStyle = getRandomColor();
+	ctx.font = `bold 39px Manrope`;
+	ctx.fillStyle = "#FF0000";
 	ctx.textAlign = "end";
 	ctx.fillText(rank, 934 - 55 - ctx.measureText(level).width - 16 - ctx.measureText(`Lv.`).width - 25, 82);
-	ctx.fillStyle = getRandomColor();
+	ctx.fillStyle = "#FF0000";
 	ctx.fillText("#", 934 - 55 - ctx.measureText(level).width - 16 - ctx.measureText(`Lv.`).width - 16 - ctx.measureText(rank).width - 16, 82);
 
-	ctx.font = `bold 26px Manrope`;
-	ctx.fillStyle = getRandomColor();
+	ctx.font = `bold 40px Manrope`;
+	ctx.fillStyle = "#1874CD";
 	ctx.textAlign = "start";
 	ctx.fillText("/ " + expNextLevel, 710 + ctx.measureText(expCurrent).width + 10, 164);
-	ctx.fillStyle = getRandomColor();
+	ctx.fillStyle = "#00BFFF";
 	ctx.fillText(expCurrent, 710, 164);
 
 	ctx.beginPath();
-	ctx.fillStyle = getRandomColor();
+	ctx.fillStyle = "#FFB90F";
 	ctx.arc(257 + 18.5, 147.5 + 18.5 + 36.25, 18.5, 1.5 * PI, 0.5 * PI, true);
 	ctx.fill();
 	ctx.fillRect(257 + 18.5, 147.5 + 36.25, expWidth, 37.5);
@@ -134,7 +123,6 @@ module.exports.makeRankCard = async (data) => {
 	fs.writeFileSync(pathImg, imageBuffer);
 	return pathImg;
 }
-
 module.exports.circle = async (image) => {
     const jimp = global.nodemodule["jimp"];
 	image = await jimp.read(image);
@@ -166,36 +154,48 @@ module.exports.onLoad = async function () {
     const { downloadFile } = global.utils;
 	const path = resolve(__dirname, "cache", "customrank");
     if (!existsSync(path)) mkdirSync(path, { recursive: true });
-//hàm dowload file có sẵn bao gồm font chữ hoặc pang rankcard (có thể thay)
+
     if (!existsSync(resolve(__dirname, 'cache', 'regular-font.ttf'))) await downloadFile("https://raw.githubusercontent.com/catalizcs/storage-data/master/rank/fonts/regular-font.ttf", resolve(__dirname, 'cache', 'regular-font.ttf'));
 	if (!existsSync(resolve(__dirname, 'cache', 'bold-font.ttf'))) await downloadFile("https://raw.githubusercontent.com/catalizcs/storage-data/master/rank/fonts/bold-font.ttf", resolve(__dirname, 'cache', 'bold-font.ttf'));
 	if (!existsSync(resolve(__dirname, 'cache', 'rankcard.png'))) await downloadFile("https://raw.githubusercontent.com/catalizcs/storage-data/master/rank/rank_card/rankcard.png", resolve(__dirname, 'cache', 'rankcard.png'));
-
 }
 
-module.exports.run = async function ({ event, api, Currencies, Users }) {
+module.exports.run = async ({ event, api, args, Currencies, Users }) => {
 	const fs = global.nodemodule["fs-extra"];
+	
 	let dataAll = (await Currencies.getAll(["userID", "exp"]));
+	const mention = Object.keys(event.mentions);
+
 	dataAll.sort((a, b) => {
 		if (a.exp > b.exp) return -1;
 		if (a.exp < b.exp) return 1;
 	});
 
-	const name = global.data.userName.get(event.senderID) || await Users.getNameUser(event.senderID);
-  const listUserID = event.participantIDs
-    var id = listUserID
-      exp = [];
-      for(const idUser of listUserID) {
-      const countMess = await Currencies.getData(event.senderID) || await Currencies.getData(id);
-      exp.push({"name" : idUser.name, "exp": (typeof countMess.exp == "undefined") ? 0 : countMess.exp, "uid": idUser});
-  }
-      exp.sort(function (a, b) { return b.exp - a.exp });
-      const rank = exp.findIndex(info => parseInt(info.uid) == parseInt(event.senderID)) + 1;   const infoUser = exp[rank - 1];
-      
-		if (rank == 0) return api.sendMessage("You are currently not in the database so can't see your rank, please try again in 5 seconds.", event.threadID, event.messageID);
-
-const point = await this.getInfo(event.senderID, Currencies);
-let pathRankCard = await this.makeRankCard({ id: event.senderID, name, rank, ...point })
-
-return api.sendMessage({body: `Name: ${name}\nTop: ${rank} \nTotal Messages: ${infoUser.exp} `, attachment: fs.createReadStream(pathRankCard) }, event.threadID, () => fs.unlinkSync(pathRankCard), event.messageID);
+	if (args.length == 0) {
+		const rank = dataAll.findIndex(item => parseInt(item.userID) == parseInt(event.senderID)) + 1;
+		const name = global.data.userName.get(event.senderID) || await Users.getNameUser(event.senderID);
+		if (rank == 0) return api.sendMessage("Error❌ Please try again in 5 seconds.", event.threadID, event.messageID);
+		const point = await this.getInfo(event.senderID, Currencies);
+		const timeStart = Date.now();
+		let pathRankCard = await this.makeRankCard({ id: event.senderID, name, rank, ...point })
+		return api.sendMessage({body: `${Date.now() - timeStart}`, attachment: fs.createReadStream(pathRankCard, {'highWaterMark': 128 * 1024}) }, event.threadID, () => fs.unlinkSync(pathRankCard), event.messageID);
 	}
+	if (mention.length == 1) {
+		const rank = dataAll.findIndex(item => parseInt(item.userID) == parseInt(mention[0])) + 1;
+		const name = global.data.userName.get(mention[0]) || await Users.getNameUser(mention[0]);
+		if (rank == 0) return api.sendMessage("Error❌ Please try again in 5 seconds.", event.threadID, event.messageID);
+		let point = await this.getInfo(mention[0], Currencies);
+		let pathRankCard = await this.makeRankCard({ id: mention[0], name, rank, ...point })
+		return api.sendMessage({ attachment: fs.createReadStream(pathRankCard) }, event.threadID, () => fs.unlinkSync(pathRankCard), event.messageID);
+	}
+	if (mention.length > 1) {
+		for (const userID of mention) {
+			const rank = dataAll.findIndex(item => parseInt(item.userID) == parseInt(userID)) + 1;
+			const name = global.data.userName.get(userID) || await Users.getNameUser(userID);
+			if (rank == 0) return api.sendMessage("Error❌ Please try again in 5 seconds.", event.threadID, event.messageID);
+			let point = await this.getInfo(userID, Currencies);
+			let pathRankCard = await this.makeRankCard({ id: userID, name, rank, ...point })
+			return api.sendMessage({ attachment: fs.createReadStream(pathRankCard) }, event.threadID, () => fs.unlinkSync(pathRankCard), event.messageID);
+		}
+	}
+}
