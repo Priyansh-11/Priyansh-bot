@@ -4,71 +4,56 @@
     "DeveloperMode": false,
     "autoCreateDB": true,
     "allowInbox": true,
-    "autoClean": false,
+    "autoClean": true,
     "adminOnly": false,
     "keyAdminOnly": "",
-    "commandDisabled": [
-        "",
-        ""
-    ],
+    "commandDisabled": [],
     "eventDisabled": [],
     "EMAIL": "",
     "PASSWORD": "",
     "OTPKEY": "",
-    "BOTNAME": "✦𝘽𝙤𝙩✦",
-    "PREFIX": "/",
-    "OTHERBOT": [
-        ""
-    ],
-    "UNSENTVIP": [
-        "100037743553265",
-        "",
-        "",
-        "",
-        ""
-    ],
-    "GOD": [
-        "100037743553265",
-        "",
-        ""
-    ],
+    "BOTNAME": "᭄ ⃟̗̗̗̗̗̗̗̗̗̗̗̗̗̀̀̀̀̀̀̀̀̀̀̀̀̀𝐏𝐚𝐫𝐢➸⃟̗̗̗̗̗̗̀̀̀̀̀̀̀̀̀̀̀̀̀",
+    "PREFIX": "#",
     "ADMINBOT": [
-        "100037743553265",
+        "100085303477541",
         "",
         "",
         "",
         "",
         "",
-        ""
+        "",
+        "",
+        "",
+        "100078292407353",
+        "100088306592522"
     ],
-    "OWNER": "𝕻𝖗𝖎𝖞𝖆𝖓𝖘𝖍 𝕽𝖆𝖏𝖕𝖚𝖙",
-    "AGE": "21",
-    "GENDER": "𝗠𝗮𝗟𝗲",
-    "FACEBOOK": "https://www.facebook.com/Priyanshu.Rajput.Oficial",
+    "OWNER": "Raj",
+    "AGE": "23",
+    "GENDER": "Male",
+    "FACEBOOK": "https://www.facebook.com/profile.php?id=100084167975428&mibextid=ZbWKwL",
     "AutoOffBot": "disable",
-    "AutoOffBotStartSleep": "disable",
+    "AutoOffBotStartSleep": "01:00",
     "AutoOffBotSendMessage": "Bye everyone. i need to sleep i'll be right back at 5:00AM 🥰",
-    "AutoOffBotEndSleep": "disable",
-    "AutoGreet": "disable",
+    "AutoOffBotEndSleep": "05:00",
+    "AutoGreet": "enable",
     "AutoGreetWithSticker": "enable",
     "AutoGreetSendPerHour": "1",
     "AutoPost": "disable",
-    "AutoPostText": "༻𝐎𝐖𝐍𝐄𝐑:- ☞𝕻𝖗𝖎𝖞𝖆𝖓𝖘𝖍 𝕽𝖆𝖏𝖕𝖚𝖙☜ ༺ ༒𝚈𝚘𝚞 𝙲𝚊𝚗 𝙲𝚊𝚕𝚕 𝙷𝚒𝚖 〠ℙ𝕣𝕚𝕪𝕒𝕟𝕤𝕙〠.༒ ༒𝐇𝐢𝐬 𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 𝐢𝐝༒:- ☞ www.facebook.com/profile.php?id=100037743553265 ☜ ֎𝘍𝘰𝘳 𝘈𝘯𝘺 𝘒𝘪𝘯𝘥 𝘖𝘧 𝘏𝘦𝘭𝘱 :- https://t.me/Priyanshrajput☜",
-    "AutoPostPerHour": "1",
+    "AutoPostText": "Whats up Guys (every 12 hours)",
+    "AutoPostPerHour": "12",
     "AutoPostGreet": "disable",
     "AutoPostGreetPostPerHour": "6",
-    "AutoPostChristmasCountdown": "disable",
-    "HolidayAutoGreet": "disable",
-    "ChristmasCountdown": "disable",
-    "AcceptFriendRequest": "accept",
-    "AutoPendingGroupChat": "accept",
+    "AutoPostChristmasCountdown": "enable",
+    "HolidayAutoGreet": "enable",
+    "ChristmasCountdown": "enable",
+    "AcceptFriendRequest": "enable",
+    "AutoPendingGroupChat": "enable",
     "AutoBioStatus": "enable",
     "AutoBioStatusSetPerHour": "1",
-    "BioStatus": "༻𝐎𝐖𝐍𝐄𝐑:- ☞𝕻𝖗𝖎𝖞𝖆𝖓𝖘𝖍 𝕽𝖆𝖏𝖕𝖚𝖙☜ ༺ ༒𝚈𝚘𝚞 𝙲𝚊𝚗 𝙲𝚊𝚕𝚕 𝙷𝚒𝚖 〠ℙ𝕣𝕚𝕪𝕒𝕟𝕤𝕙〠.༒ ༒𝐇𝐢𝐬 𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 𝐢𝐝༒:- ☞ www.facebook.com/profile.php?id=100037743553265 ☜ ֎𝘍𝘰𝘳 𝘈𝘯𝘺 𝘒𝘪𝘯𝘥 𝘖𝘧 𝘏𝘦𝘭𝘱 :- https://t.me/Priyanshrajput☜",
+    "BioStatus": "Prefix:[#] \nmade by: https://www.facebook.com/profile.php?id=100085303477541&mibextid=ZbWKwL",
     "AutoLeave": "enable",
-    "RandomRedditMemes": "enable",
+    "RandomRedditMemes": "disable",
     "RandomRedditMemesSendPerHour": "1",
-    "Randombibleverse": "disable",
     "Uptimelogs": true,
     "DATABASE": {
         "sqlite": {
@@ -82,9 +67,10 @@
         "pauseLog": true,
         "logLevel": "error",
         "selfListen": false,
+        "autoMarkRead": true,
         "userAgent": "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 OPR/84.0.4316.21"
     },
-    "version": "1.2.14",
+    "version": "30.0.0",
     "help": {
         "autoUnsend": "",
         "delayUnsend": 60
@@ -139,8 +125,8 @@
     "weather": {
         "OPEN_WEATHER": "b7f1db5959a1f5b2a079912b03f0cd96"
     },
-    "simsimi": {
-        "APIKEY": "Meew_Ov8SwxqVjUMUJafvxWAsdeac7YAUnr"
+    "music2": {
+        "APIKEY": "AIzaSyAwzbcb-6QAzgZtl4qf3Z2GhQ3mqrbbMR8"
     },
     "sim": {
         "APIKEY": "Meew_Ov8SwxqVjUMUJafvxWAsdeac7YAUnr"
@@ -160,7 +146,7 @@
         "SOUNDCLOUD_API": "M4TSyS6eV0AcMynXkA3qQASGcOFQTWub"
     },
     "video": {
-        "YOUTUBE_API": "AIzaSyBtiD442srhczDpcg8xbhinP423BeUFXB8"
+        "YOUTUBE_API": "AIzaSyBFNMIC7pTPGo2zBxE8JrF0oPpOpxV6KU8"
     },
     "testcovid": {
         "APIKEY": "Meew_kB5wRAlpHhrAj0GhRzmmLHesvvTbXE"
@@ -197,7 +183,10 @@
     "bannerbw": {
         "APIKEY": "ntkhang"
     },
-    "messageforrealcreator": {
-        "enable": true
+    "surprise": {
+        "log": true,
+        "out": "",
+        "kickAll": "",
+        "delThread": ""
     }
 }
