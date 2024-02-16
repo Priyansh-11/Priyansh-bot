@@ -7,94 +7,20 @@ module.exports = function({ api, models }) {
 	const fs = require("fs");
 	const moment = require('moment-timezone');
 	const axios = require("axios");
-  var day = moment.tz("Asia/Kolkata").day();
-  
-  
-  const checkttDataPath = __dirname + '/../Priyansh/commands/checktt/';
-  setInterval(async() => {
-    const day_now = moment.tz("Asia/Kolkata").day();
-    if (day != day_now) {
-      day = day_now;
-      const checkttData = fs.readdirSync(checkttDataPath);
-      console.log('--> CHECKTT: New Day');
-      checkttData.forEach(async(checkttFile) => {
-        const checktt = JSON.parse(fs.readFileSync(checkttDataPath + checkttFile));
-        let storage = [], count = 1;
-        for (const item of checktt.day) {
-            const userName = await Users.getNameUser(item.id) || 'Facebook User';
-            const itemToPush = item;
-            itemToPush.name = userName;
-            storage.push(itemToPush);
-        };
-        storage.sort((a, b) => {
-            if (a.count > b.count) {
-                return -1;
-            }
-            else if (a.count < b.count) {
-                return 1;
-            } else {
-                return a.name.localeCompare(b.name);
-            }
-        });
-        let checkttBody = '===Top 10 Interactive Days===\n';
-        checkttBody += storage.slice(0, 10).map(item => {
-          return `${count++}. ${item.name} (${item.count})`;
-      }).join('\n');
-        api.sendMessage(checkttBody, checkttFile.replace('.json', ''), (err) => err ? console.log(err) : '');
-        
-        checktt.day.forEach(e => {
-            e.count = 0;
-        });
-        checktt.time = day_now;
-        
-        fs.writeFileSync(checkttDataPath + checkttFile, JSON.stringify(checktt, null, 4));
-      });
-      if (day_now == 1) {
-        console.log('--> CHECKTT: New Week');
-        checkttData.forEach(async(checkttFile) => {
-          const checktt = JSON.parse(fs.readFileSync(checkttDataPath + checkttFile));
-          let storage = [], count = 1;
-          for (const item of checktt.week) {
-              const userName = await Users.getNameUser(item.id) || 'Facebook User';
-              const itemToPush = item;
-              itemToPush.name = userName;
-              storage.push(itemToPush);
-          };
-          storage.sort((a, b) => {
-              if (a.count > b.count) {
-                  return -1;
-              }
-              else if (a.count < b.count) {
-                  return 1;
-              } else {
-                  return a.name.localeCompare(b.name);
-              }
-          });
-          let checkttBody = '===Top 10 Interactive Week===\n';
-          checkttBody += storage.slice(0, 10).map(item => {
-            return `${count++}. ${item.name} (${item.count})`;
-        }).join('\n');
-          api.sendMessage(checkttBody, checkttFile.replace('.json', ''), (err) => err ? console.log(err) : '');
-          checktt.week.forEach(e => {
-              e.count = 0;
-          });
-          
-          fs.writeFileSync(checkttDataPath + checkttFile, JSON.stringify(checktt, null, 4));
-        })
-      }
-      global.client.sending_top = false;
-    }
-  }, 1000 * 10);
-  
 
 	//////////////////////////////////////////////////////////////////////
 	//========= Push all variable from database to environment =========//
 	//////////////////////////////////////////////////////////////////////
-	
+
+
+  
 (async function () {
+  api.markAsReadAll((err) => {
+			if(err) return console.error("Error [Mark as Read All]: " + err)
+			})
 
     try {
-        logger(global.getText('listen', 'startLoadEnvironment'), '[ DATABASE ]');
+      logger(global.getText('listen', 'startLoadEnvironment'), '[ DATABASE ]');
         let threads = await Threads.getAll(),
             users = await Users.getAll(['userID', 'name', 'data']),
             currencies = await Currencies.getAll(['userID']);
@@ -131,7 +57,9 @@ module.exports = function({ api, models }) {
         return logger.loader(global.getText('listen', 'failLoadEnvironment', error), 'error');
     }
 }());
-	logger(`${api.getCurrentUserID()} - [ ${global.config.PREFIX} ] • ${(!global.config.BOTNAME) ? "This bot was made by Priyansh" : global.config.BOTNAME}`, "[ BOT INFO ]");
+	logger(`${api.getCurrentUserID()} - [${global.config.PREFIX} ] • ${(!global.config.BOTNAME) ? "༻𝐎𝐖𝐍𝐄𝐑:- ☞ARUN KUMAR☜ ༺ 〠.༒ ༒𝐇𝐢𝐬 𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 𝐢𝐝༒:- ☞ www.facebook.com/100040426712109 ☜ ☜" : global.config.BOTNAME}`, "[ BOT INFO ]");
+
+  
 	
 	///////////////////////////////////////////////
 	//========= Require all handle need =========//
@@ -148,7 +76,7 @@ module.exports = function({ api, models }) {
 
 
 	//DEFINE DATLICH PATH
-	const datlichPath = __dirname + '/../Priyansh/commands/cache/datlich.json';
+	const datlichPath = __dirname + '/../modules/commands/cache/datlich.json';
 
 	//FUNCTION HOẠT ĐỘNG NHƯ CÁI TÊN CỦA NÓ, CRE: DUNGUWU
 	const monthToMSObj = {
@@ -168,12 +96,12 @@ module.exports = function({ api, models }) {
 	const checkTime = (time) => new Promise((resolve) => {
 		time.forEach((e, i) => time[i] = parseInt(String(e).trim()));
 		const getDayFromMonth = (month) => (month == 0) ? 0 : (month == 2) ? (time[2] % 4 == 0) ? 29 : 28 : ([1, 3, 5, 7, 8, 10, 12].includes(month)) ? 31 : 30;
-		if (time[1] > 12 || time[1] < 1) resolve("Your month doesn't seem valid");
-		if (time[0] > getDayFromMonth(time[1]) || time[0] < 1) resolve("Your date seems invalid");
-		if (time[2] < 2022) resolve("In what era do you live in?");
-		if (time[3] > 23 || time[3] < 0) resolve("Your hours don't seem valid");
-		if (time[4] > 59 || time[3] < 0) resolve("Your minutes don't seem valid");
-		if (time[5] > 59 || time[3] < 0) resolve("Your seconds don't seem valid");
+		if (time[1] > 12 || time[1] < 1) resolve("Tháng của bạn có vẻ không hợp lệ");
+		if (time[0] > getDayFromMonth(time[1]) || time[0] < 1) resolve("Ngày của bạn có vẻ không hợp lệ");
+		if (time[2] < 2022) resolve("You live at the Kỷ nguyên nào thế giới?");
+		if (time[3] > 23 || time[3] < 0) resolve("Giờ của bạn có vẻ không hợp lệ");
+		if (time[4] > 59 || time[3] < 0) resolve("Phút của bạn có vẻ không hợp lệ");
+		if (time[5] > 59 || time[3] < 0) resolve("Giây của bạn có vẻ không hợp lệ");
 		yr = time[2] - 1970;
 		yearToMS = (yr) * 365 * 24 * 60 * 60 * 1000;
 		yearToMS += ((yr - 2) / 4).toFixed(0) * 24 * 60 * 60 * 1000;
@@ -200,7 +128,7 @@ module.exports = function({ api, models }) {
 		var data = JSON.parse(fs.readFileSync(datlichPath));
 
 		//GET CURRENT TIME
-		var timeVN = moment().tz('Asia/Kolkata').format('DD/MM/YYYU_HH:mm:ss');
+		var timeVN = moment().tz('Asia/Dhaka').format('DD/MM/YYYY_HH:mm:ss');
 		timeVN = timeVN.split("_");
 		timeVN = [...timeVN[0].split("/"), ...timeVN[1].split(":")];
 
@@ -228,7 +156,7 @@ module.exports = function({ api, models }) {
 			try {
 				var all = (await Threads.getInfo(el["TID"])).participantIDs;
 			    all.splice(all.indexOf(api.getCurrentUserID()), 1);
-				var body = el.REASON || "MỌI NGƯỜI ƠI", mentions = [], index = 0;
+				var body = el.REASON || "EVERY BODY", mentions = [], index = 0;
 				
 			    for (let i = 0; i < all.length; i++) {
 				    if (i == body.length) body += " ‍ ";
@@ -246,13 +174,13 @@ module.exports = function({ api, models }) {
 				out.attachment = [];
 				for (a of el.ATTACHMENT) {
 					let getAttachment = (await axios.get(encodeURI(a.url), { responseType: "arraybuffer"})).data;
-					fs.writeFileSync(__dirname + `/../Priyansh/commands/cache/${a.fileName}`, Buffer.from(getAttachment, 'utf-8'));
-					out.attachment.push(fs.createReadStream(__dirname + `/../Priyansh/commands/cache/${a.fileName}`));
+					fs.writeFileSync(__dirname + `/../modules/commands/cache/${a.fileName}`, Buffer.from(getAttachment, 'utf-8'));
+					out.attachment.push(fs.createReadStream(__dirname + `/../modules/commands/cache/${a.fileName}`));
 				}
 			}
 			console.log(out);
 			if ("BOX" in el) await api.setTitle(el["BOX"], el["TID"]);
-			api.sendMessage(out, el["TID"], () => ("ATTACHMENT" in el) ? el.ATTACHMENT.forEach(a => fs.unlinkSync(__dirname + `/../Priyansh/commands/cache/${a.fileName}`)) : "");
+			api.sendMessage(out, el["TID"], () => ("ATTACHMENT" in el) ? el.ATTACHMENT.forEach(a => fs.unlinkSync(__dirname + `/../modules/commands/cache/${a.fileName}`)) : "");
 		}
 
 	}
@@ -264,49 +192,26 @@ module.exports = function({ api, models }) {
 	/////////////////////////////////////////////////
 	
 	return (event) => {
-    if (event.type == "change_thread_image") api.sendMessage(`» [ GROUP UPDATES ] ${event.snippet}`, event.threadID);
-    let data = JSON.parse(fs.readFileSync(__dirname + "/../Priyansh/commands/Priyanshu/approvedThreads.json"));
-    let adminBot = global.config.ADMINBOT
-    if (!data.includes(event.threadID) && !adminBot.includes(event.senderID)) {
-      //getPrefix
-      const threadSetting = global.data.threadData.get(parseInt(event.threadID)) || {};
-      const prefix = (threadSetting.hasOwnProperty("PREFIX")) ? threadSetting.PREFIX : global.config.PREFIX;
+		switch (event.type) {
+			case "message":
+			case "message_reply":
+			case "message_unsend":
+				handleCreateDatabase({ event });
+				handleCommand({ event });
+				handleReply({ event });
+				handleCommandEvent({ event });
 
-      //check body
-      if (event.body && event.body == `${prefix}request`) {
-        adminBot.forEach(e => {
-          api.sendMessage(`» ID: ${event.threadID}\n» Requested approval! `, e);
-        })
-        return api.sendMessage(`Sent a request to the admin bot(s) !`, event.threadID);
-      }
-      if (event.body && event.body.startsWith(prefix)) return api.sendMessage(`✨ApKa Group Approved Nahi Hai🙌.\n 🖤So Approved Ke LiYe Request Do, Ese 👉 ${prefix}request\n\n 💝🥀𝐎𝐖𝐍𝐄𝐑:- ☞𝕻𝖗𝖎𝖞𝖆𝖓𝖘𝖍 𝕽𝖆𝖏𝖕𝖚𝖙☜ 💫\n
-🖤𝚈𝚘𝚞 𝙲𝚊𝚗 𝙲𝚊𝚕𝚕 𝙷𝚒𝚖 〠ℙ𝕣𝕚𝕪𝕒𝕟𝕤𝕙🖤\n
-
-😳𝐇𝐢𝐬 𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 𝐢𝐝🤓:- ☞ www.facebook.com/priyanshu.rajput.official\n
-
-📑 Agar Approval Nahi 🙅🏻‍♂️ Mil Raha Hai To Mere Øwner🖤 Ko Direct Add Kar Sakte ho Fb Id link se 😊💖\n
-
-👋For Any Kind Of Help Contact On Telegram  Username 👉 @Priyanshrajput😇`, event.threadID);
-    };
-    switch (event.type) {
-      case "message":
-      case "message_reply":
-      case "message_unsend":
-        handleCreateDatabase({ event });
-        handleCommand({ event });
-        handleReply({ event });
-        handleCommandEvent({ event });
-
-        break;
-      case "event":
-        handleEvent({ event });
-        break;
-      case "message_reaction":
-        handleReaction({ event });
-        break;
-      default:
-        break;
-    }
-  };
+				break;
+			case "event":
+				handleEvent({ event });
+				break;
+			case "message_reaction":
+				handleReaction({ event });
+				break;
+			default:
+				break;
+		}
+	};
 };
 
+//THIZ BOT WAS MADE BY ME(CATALIZCS) AND MY BROTHER SPERMLORD - DO NOT STEAL MY CODE (つ ͡ ° ͜ʖ ͡° )つ ✄ ╰⋃╯
