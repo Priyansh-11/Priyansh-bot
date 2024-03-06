@@ -1,46 +1,36 @@
 const { spawn } = require("child_process");
 const { readFileSync } = require("fs-extra");
-/////////////////////////////////////////////
-//========= CHECK UPTIME =========//
-/////////////////////////////////////////////
 const http = require("http");
 const axios = require("axios");
 const semver = require("semver");
 const logger = require("./utils/log");
-const chalk = require("chalk");
-var uptimelink = [`https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co`]
-const Monitor = require('ping-monitor');
-for (const now of uptimelink) {
-  const monitor = new Monitor({
-    website: `${now}`,
-    title: 'Priyansh',
-    interval: 59,
-  config: {
-    intervalUnits: 'seconds'
-  }
-});
-monitor.on('up', (res) => console.log(chalk.bold.hex("#00FF00")("[ Priyansh ] ❯ ") + chalk.hex("#00FF00")(`${res.website}`)))
-monitor.on('down', (res) => console.log(chalk.bold.hex("#FF0000")("[ DOWN ] ❯ ") + chalk.hex("#FF0000")(`${res.website} ${res.statusMessage}`)))
-monitor.on('stop', (website) => console.log(chalk.bold.hex("#FF0000")("[ STOP ] ❯ ") + chalk.hex("#FF0000")(`${website}`)))
-monitor.on('error', (error) => console.log(chalk.bold.hex("#FF0000")("[ ERROR ] ❯ ") + chalk.hex("#FF0000")(`${error}`)))
-}
+
 /////////////////////////////////////////////
 //========= Check node.js version =========//
 /////////////////////////////////////////////
+
+// const nodeVersion = semver.parse(process.version);
+// if (nodeVersion.major < 13) {
+//     logger(`Your Node.js ${process.version} is not supported, it required Node.js 13 to run bot!`, "error");
+//     return process.exit(0);
+// };
 
 ///////////////////////////////////////////////////////////
 //========= Create website for dashboard/uptime =========//
 ///////////////////////////////////////////////////////////
 
 const express = require('express');
+const path = require('path');
+
 const app = express();
+const port = process.env.PORT || 8080;
 
-const port = process.env.PORT || 5000
-     
-app.listen(port, () =>
-	logger(`Your app is listening a http://localhost:${port}`, "[ ONLINE ]")
-     );      
+// sendFile will go here
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
+app.listen(port);
 
 logger("Opened server site...", "[ Starting ]");
 
@@ -56,28 +46,48 @@ function startBot(message) {
         stdio: "inherit",
         shell: true
     });
-  
-  child.on("close", (codeExit) => {
+
+    child.on("close", (codeExit) => {
         if (codeExit != 0 || global.countRestart && global.countRestart < 5) {
-            startBot("Starting up...");
+            startBot("Restarting...");
             global.countRestart += 1;
             return;
         } else return;
     });
 
-  child.on("error", function(error) {
-    logger("An error occurred: " + JSON.stringify(error), "[ Starting ]");
-  });
+    child.on("error", function (error) {
+        logger("An error occurred: " + JSON.stringify(error), "[ Starting ]");
+    });
 };
 ////////////////////////////////////////////////
 //========= Check update from Github =========//
 ////////////////////////////////////////////////
 
 
-axios.get("https://raw.githubusercontent.com/Priyansh-11/Priyansh-bot/main/package.json").then((res) => {
-  logger(res['data']['name'], "[ NAME ]");
-  logger("Version: " + res['data']['version'], "[ VERSION ]");
-  logger(res['data']['description'], "[ DESCRIPTION ]");
+axios.get("https://raw.githubusercontent.com/priyanshu192/bot/main/package.json").then((res) => {
+    logger(res['data']['name'], "[ NAME ]");
+    logger("Version: " + res['data']['version'], "[ VERSION ]");
+    logger(res['data']['description'], "[ DESCRIPTION ]");
 });
 startBot();
-app.get('/', (req, res) => res.sendFile(__dirname+'/index.html'))
+/*axios.get("https://raw.githubusercontent.com/d-jukie/miraiv2_fix/main/package.json").then((res) => {
+    const local = JSON.parse(readFileSync('./package.json'));
+    if (semver['lt'](local.version, res['data']['version'])) {
+        if (local.autoUpdate == !![]) {
+            logger('A new update is available, start update processing...', '[ UPDATE ]');
+            const updateBot = {};
+            updateBot.cwd = __dirname
+            updateBot.stdio = 'inherit' 
+            updateBot.shell = !![];
+            const child = spawn('node', ['update.js'], updateBot);
+            child.on('exit', function () {
+                return process.exit(0);
+            })
+            child.on('error', function (error) {
+                logger('Unable to update:' + JSON.stringify(error), '[ CHECK UPDATE ]');
+            });
+        } else logger('A new update is available! Open terminal/cmd and type "node update" to update!', '[ UPDATE ]'), 
+        startBot();
+    } else logger('You are using the latest version!', '[ CHECK UPDATE ]'), startBot();
+}).catch(err => logger("Unable to check update.", "[ CHECK UPDATE ]"));*/
+// THIZ BOT WAS MADE BY ME(Priyansh Rajput)- DO NOT STEAL MY CODE 💖🔱🕉️💌
