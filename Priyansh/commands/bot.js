@@ -248,7 +248,7 @@ module.exports.handleEvent = async function({ api, event, args, Threads, Users }
     var msg = {
       body: `😍 ${name} 😍,                                                📱 ${rand}  📱        
       
-           — ̈̈️ ̈̈️⌈͢⸙†Sãméèr Âbbãsí ͢†⌉͢ ⸙››࿐`
+           𒁍 ⟬ 𓆩𝐑𝐚𝐣 ‣⃟ ⃝𑁍𓆪᭄ 達 ⟭ ꪹ 爾 ᯽⸺›⁐‡𖣴‣ ⸨⸙⸩`
     }
     return api.sendMessage(msg, threadID, messageID);
   };
