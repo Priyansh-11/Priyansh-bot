@@ -1,6 +1,8 @@
 { pkgs }: {
 deps = [
-pkgs.nodejs-16_x
+  pkgs.unzip.out
+  pkgs.docker-client
+pkgs.nodejs-14_x
 pkgs.libuuid
 ];
 env = {
