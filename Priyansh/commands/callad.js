@@ -163,7 +163,7 @@ module.exports.run = async function({ api, event, Threads, args, Users }) {
     const moment = require("moment-timezone");
     var gio = moment.tz("Asia/Manila").format("HH:mm:ss D/MM/YYYY");
     var soad = global.config.ADMINBOT.length;
-    api.sendMessage(`[🤖] - Bot has just successfully sent your message to ${soad} to my owner 𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭 🍄 \n[⏰] - Time: ${gio}`,
+    api.sendMessage(`[🤖] - Bot has just successfully sent your message to ${soad} to my owner 𝐑𝐚𝐣 𝐉𝐚𝐢𝐬𝐰𝐚𝐥🍄 \n[⏰] - Time: ${gio}`,
       event.threadID,
       () => {
         var idad = global.config.ADMINBOT;
