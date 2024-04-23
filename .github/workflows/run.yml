@@ -19,14 +19,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Clear Cache
-      run: |
-        rm -rf ~/.npm
-        npm cache clean --force
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
     - run: npm install
     - run: npm start
