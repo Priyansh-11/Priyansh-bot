@@ -26,3 +26,7 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm start
+    - name: Clear Cache
+      run: |
+        rm -rf ~/.npm
+        npm cache clean --force
