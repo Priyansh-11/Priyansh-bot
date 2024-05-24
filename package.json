@@ -10,7 +10,7 @@
 		},
 		"repository": {
 				"type": "git",
-				"url": "https://github.com/Priyansh-11/Priyansh-bot"
+				"url": "https://github.com/Priyansh-11/Priyansh-bot/issues"
 		},
 		"keywords": [
 				"bot",
@@ -27,7 +27,7 @@
 		"bugs": {
 				"url": "https://github.com/Priyansh-11/Priyansh-bot/issues"
 		},
-		"homepage": "https://github.com/Priyansh-11/Priyansh-bot/",
+		"homepage": "https://github.com/Priyansh-11/Priyansh-bot/issues",
 		"dependencies": {
 				"@distube/ytdl-core": "^4.13.2",
 				"@miraipr0ject/assets": "^1.0.9",
@@ -84,6 +84,8 @@
 				"path": "^0.12.7",
 				"pidusage": "^3.0.0",
 				"ping-monitor": "^0.6.2",
+				"priyansh-fb-downloader": "^2.0.0",
+				"priyansh-ig-downloader": "^2.0.0",
 				"random-cat-img": "^1.0.4",
 				"readline": "^1.3.0",
 				"request": "^2.88.2",
