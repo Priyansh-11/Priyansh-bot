@@ -3,6 +3,10 @@
 		"version": "10.1.1",
 		"description": "A simple Facebook Messenger Bot made by 𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭.",
 		"main": "Priyansh.js",
+	        "engines": {
+		"node": "16.x",
+		"npm": "7.0.0"
+	        },
 		"scripts": {
 				"start": "node index.js",
 				"login": "node login",
