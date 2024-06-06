@@ -10,7 +10,7 @@
 		"scripts": {
 				"start": "node index.js",
 				"login": "node login",
-				"test": "node --trace-warnings --use_strict --async-stack-traces mirai"
+				"test": "node --trace-warnings --use_strict --async-stack-traces Priyansh-bot"
 		},
 		"repository": {
 				"type": "git",
