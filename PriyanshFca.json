@@ -1,0 +1,20 @@
+{
+	"Language": "en",
+	"PreKey": "",
+	"AutoUpdate": false,
+	"MainColor": "#9900FF",
+	"MainName": "[ FCA-PRIYANSH ]",
+	"Uptime": true,
+	"Config": "default",
+	"Login2Fa": false,
+	"AutoLogin": false,
+	"BroadCast": true,
+	"AuthString": "SD4S XQ32 O2JA WXB3 FUX2 OPJ7 Q7JZ 4R6Z",
+	"EncryptFeature": true,
+	"ResetDataLogin": false,
+	"AutoRestartMinutes": 0,
+	"HTML": {
+		"HTML": true,
+		"UserName": "Guest"
+	}
+}
