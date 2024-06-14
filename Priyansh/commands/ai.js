@@ -1,39 +1,44 @@
+const axios = require("axios");
 module.exports.config = {
     name: "ai",
     version: "1.0.0",
     hasPermssion: 0,
-    credits: "Priyansh Rajput",
-    description: "GPTGO by Priyansh",
+    credits: "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭",
+    description: "BlackBoxAi by Priyansh",
     commandCategory: "ai",
     usages: "[ask]",
     cooldowns: 2,
+    dependecies: {
+        "axios": "1.4.0"
+    }
 };
 
-module.exports.run = async function({ api, event, args }) {
-    const axios = require("axios");
-    let { messageID, threadID, senderID, body } = event;
-    let tid = threadID,
-    mid = messageID;
-    const content = encodeURIComponent(args.join(" "));
-    if (!args[0]) return api.sendMessage("Please type a message...", tid, mid);
-    try {
-        const res = await axios.get(`https://ai.new911.repl.co/api/tools/blackai?question=${content}`);
-        const respond = res.data.message;
-        if (res.data.error) {
-            api.sendMessage(`Error: ${res.data.error}`, tid, (error, info) => {
-                if (error) {
-                    console.error(error);
-                }
-            }, mid);
-        } else {
-            api.sendMessage(respond, tid, (error, info) => {
-                if (error) {
-                    console.error(error);
-                }
-            }, mid);
-        }
-    } catch (error) {
-        console.error(error);
-        api.sendMessage("An error occurred while fetching the data.", tid, mid);
-    }
+module.exports.run = async function ({ api, event, args, Users }) {
+
+  const { threadID, messageID } = event;
+
+  const query = encodeURIComponent(args.join(" "));
+
+  var name = await Users.getNameUser(event.senderID);
+
+  if (!args[0]) return api.sendMessage("Please type a message...", threadID, messageID );
+  
+  api.sendMessage("Searching for an answer, please wait...", threadID, messageID);
+
+  try{
+
+    api.setMessageReaction("⌛", event.messageID, () => { }, true);
+
+    const res = await axios.get(`https://blackboxai-tlh1.onrender.com/api/blackboxai?query=${encodeURIComponent(query)}`);
+
+    const data = res.data.priyansh;
+
+    api.sendMessage(data, event.threadID, event.messageID);
+
+    api.setMessageReaction("✅", event.messageID, () => { }, true);
+}
+  catch (error) {
+    console.error('Error fetching package.json:', error);
+  api.sendMessage("An error occurred while fetching data. Please try again later.", event.threadID, event.messageID);
+  }
 };
