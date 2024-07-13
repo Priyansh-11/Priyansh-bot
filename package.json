@@ -48,6 +48,7 @@
 				"child_process": "^1.0.2",
 				"cloudscraper": "^4.6.0",
 				"colors": "^1.4.0",
+				"content-disposition": "^0.5.4",
 				"cron": "^2.1.0",
 				"crypto": "^1.0.1",
 				"crypto-js": "^4.1.1",
