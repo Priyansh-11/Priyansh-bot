@@ -34,7 +34,7 @@ var callback = () => api.sendMessage({body:` ╾━╤デ╦︻(▀̿Ĺ̯▀̿ �
 
 🙈bot andmin owner facebook id link🙈➪ https://www.facebook.com/profile.php?id=61561421229589 💞🕊️
 
-👋For Any Kind Of Help Contact On Telegram  Username 👉 @Priyanshrajput😇
+👋For Any Kind Of Help 😇
 
 ✧══════•❁❀❁•══════✧
 
