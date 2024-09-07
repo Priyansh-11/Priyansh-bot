@@ -26,7 +26,7 @@ module.exports.handleEvent = async function({ api, event }) {
             try {
 
             const videoInfo = await instagramGetUrl(event.body);
-            const hdLink = videoInfo.url_list[0];
+            const hdLink = videoInfo.video[0].video;
             const response = await axios.get(hdLink, { responseType: 'stream' });
             const tempFilePath = tempy.file({ extension: 'mp4' });
             const writer = fs.createWriteStream(tempFilePath);
