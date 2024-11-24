@@ -5,16 +5,6 @@ const axios = require("axios");
 const semver = require("semver");
 const logger = require("./utils/log");
 
-/////////////////////////////////////////////
-//========= Check node.js version =========//
-/////////////////////////////////////////////
-
-// const nodeVersion = semver.parse(process.version);
-// if (nodeVersion.major < 13) {
-//     logger(`Your Node.js ${process.version} is not supported, it required Node.js 13 to run bot!`, "error");
-//     return process.exit(0);
-// };
-
 ///////////////////////////////////////////////////////////
 //========= Create website for dashboard/uptime =========//
 ///////////////////////////////////////////////////////////
@@ -70,24 +60,4 @@ axios.get("https://raw.githubusercontent.com/priyanshu192/bot/main/package.json"
     logger(res['data']['description'], "[ DESCRIPTION ]");
 });
 startBot();
-/*axios.get("https://raw.githubusercontent.com/d-jukie/miraiv2_fix/main/package.json").then((res) => {
-    const local = JSON.parse(readFileSync('./package.json'));
-    if (semver['lt'](local.version, res['data']['version'])) {
-        if (local.autoUpdate == !![]) {
-            logger('A new update is available, start update processing...', '[ UPDATE ]');
-            const updateBot = {};
-            updateBot.cwd = __dirname
-            updateBot.stdio = 'inherit' 
-            updateBot.shell = !![];
-            const child = spawn('node', ['update.js'], updateBot);
-            child.on('exit', function () {
-                return process.exit(0);
-            })
-            child.on('error', function (error) {
-                logger('Unable to update:' + JSON.stringify(error), '[ CHECK UPDATE ]');
-            });
-        } else logger('A new update is available! Open terminal/cmd and type "node update" to update!', '[ UPDATE ]'), 
-        startBot();
-    } else logger('You are using the latest version!', '[ CHECK UPDATE ]'), startBot();
-}).catch(err => logger("Unable to check update.", "[ CHECK UPDATE ]"));*/
-// THIZ BOT WAS MADE BY ME(Priyansh Rajput)- DO NOT STEAL MY CODE 💖🔱🕉️💌
+
