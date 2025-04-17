@@ -1,4 +1,4 @@
-const getFbVideoInfo = require("priyansh-fb-downloader");
+const getFbVideoInfo = require("priyansh-all-dl");
 const axios = require("axios");
 const fs = require("fs-extra");
 const tempy = require('tempy');
@@ -13,7 +13,7 @@ module.exports.config = {
     usages: "[Facebook video URL]",
     cooldowns: 5,
     dependencies: {
-        "priyansh-fb-downloader": "2.0.0",
+        "priyansh-all-dl": "2.0.0",
         "axios": "0.21.1",
         "fs-extra": "10.0.0",
         "tempy": "0.4.0"
@@ -26,7 +26,7 @@ module.exports.handleEvent = async function({ api, event }) {
             try {
 
             const videoInfo = await getFbVideoInfo(event.body);
-            const hdLink = videoInfo.hd;
+            const hdLink = videoInfo["360p"];
             const response = await axios.get(hdLink, { responseType: 'stream' });
             const tempFilePath = tempy.file({ extension: 'mp4' });
             const writer = fs.createWriteStream(tempFilePath);
